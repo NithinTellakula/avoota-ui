@@ -1,0 +1,41 @@
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <div>
+      <h5 class="mb-0">
+        <b>Hotel Name:</b> {{ selectedHotel?.name }}
+      </h5>
+      <small class="text-muted">Address: {{ selectedHotel?.address }}</small>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <!-- ✅ Correct select syntax -->
+      <select
+        class="form-select me-3"
+        style="width: 260px"
+        [(ngModel)]="selectedHotelId"
+        (ngModelChange)="onSelectHotel($event)"
+      >
+        <option *ngFor="let h of hotels" [ngValue]="h.id">
+          {{ h.name }} - {{ h.id }}
+        </option>
+      </select>
+
+      <button class="btn btn-success" (click)="toggleCreateRoom()">
+        + CREATE NEW ROOM
+      </button>
+    </div>
+  </div>
+
+  <!-- Room form -->
+  <div *ngIf="showCreateForm" class="card card-body mt-3">
+    <h6>Create New Room for {{ selectedHotel?.name }}</h6>
+    <input class="form-control mb-2" placeholder="Room Name" [(ngModel)]="newRoomName" />
+    <textarea
+      class="form-control mb-2"
+      placeholder="Description"
+      [(ngModel)]="newRoomDesc"
+    ></textarea>
+    <button class="btn btn-primary" (click)="createRoom()">Save Room</button>
+    <button class="btn btn-secondary ms-2" (click)="toggleCreateRoom()">Cancel</button>
+  </div>
+</div>
