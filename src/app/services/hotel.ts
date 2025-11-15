@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { Observable, of } from 'rxjs';
 
 // --- Models ---
@@ -23,10 +24,14 @@ export interface Hotel {
 }
 
 // --- Service ---
+=======
+
+>>>>>>> origin/Ashish
 @Injectable({
   providedIn: 'root'
 })
 export class HotelService {
+<<<<<<< HEAD
 
   // ✅ Multiple hotels, each with rooms
   private hotels: Hotel[] = [
@@ -128,5 +133,19 @@ export class HotelService {
       });
     }
     return of();
+=======
+  hotels:any[] = [];
+
+  addHotel(hotel:any) {
+    this.hotels.push(hotel);
+  }
+
+  getHotels() {
+    return this.hotels;
+  }
+
+  getHotelById(id:any){
+    return this.hotels.find(h => h.id == id);
+>>>>>>> origin/Ashish
   }
 }

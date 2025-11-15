@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="header">
+    <button class="back-btn" (click)="goBack()">←</button>
+    <h2>Add Hotel</h2>
+  </div>
+
+  <h3 class="title">Hotel Details</h3>
+
+  <div class="form-group">
+    <input type="text" placeholder="Hotel ID" class="input" [(ngModel)]="hotel.id">
+    <input type="text" placeholder="Hotel Name" class="input" [(ngModel)]="hotel.name">
+    <input type="text" placeholder="Hotel Address" class="input" [(ngModel)]="hotel.address">
+  </div>
+
+  <button class="save-btn" (click)="saveHotel()">Save Hotel</button>
+</div>

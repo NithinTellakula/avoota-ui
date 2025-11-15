@@ -1,0 +1,45 @@
+.container {
+  max-width: 650px;
+  margin: auto;
+  padding: 25px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.back-btn {
+  border: none;
+  background: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.title {
+  color: teal;
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 96%;
+  padding: 14px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.save-btn {
+  padding: 10px 18px;
+  background: teal;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

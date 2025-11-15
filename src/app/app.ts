@@ -1,14 +1,17 @@
-
-import { Component } from '@angular/core';
+import { Component , signal} from '@angular/core';
 import { HotelHeaderComponent } from './hotel-header/hotel-header';
 import { RoomsComponent } from './rooms/rooms.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HotelHeaderComponent, RoomsComponent],
+  imports: [RouterOutlet, HotelHeaderComponent, RoomsComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {}
+
+export class App {
+  protected readonly title = signal('hotel-management');
+}
 
