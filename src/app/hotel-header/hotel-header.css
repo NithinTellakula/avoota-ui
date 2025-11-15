@@ -1,0 +1,9 @@
+.container {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+select {
+  min-width: 240px;
+}

@@ -1,0 +1,277 @@
+/* --- GLOBAL RESET / LAYOUT BASE --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:host {
+  display: block;
+  padding: 24px;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- HOTEL HEADER --- */
+.hotel-header {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.hotel-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.hotel-info h5 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+.hotel-info small {
+  display: block;
+  color: #888;
+  font-size: 12px;
+}
+
+.hotel-select {
+  flex-shrink: 0;
+}
+
+.hotel-select .form-select {
+  min-width: 260px;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+/* --- ROOMS CONTAINER --- */
+.rooms-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+/* --- TEAL HEADER BAR (Existing Rooms) --- */
+.rooms-header {
+  background: #20a492;
+  color: #fff;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.rooms-header h5 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Create button - white pill with green plus circle */
+.create-room-btn {
+  background: #fff;
+  color: #20a492;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.create-room-btn:hover {
+  background: #f8f8f8;
+}
+
+.create-room-btn .plus {
+  background: #20a492;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* --- ROOM TABLE --- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 14px;
+}
+
+.table thead th {
+  background: #e8e8e8;
+  color: #333;
+  font-weight: 700;
+  text-align: left;
+  padding: 12px 16px;
+  border: 1px solid #d3d3d3;
+  font-size: 13px;
+}
+
+.table tbody td {
+  border: 1px solid #d3d3d3;
+  padding: 14px 16px;
+  vertical-align: middle;
+  color: #333;
+}
+
+.table tbody tr {
+  background: #fff;
+}
+
+.table tbody tr:nth-child(even) {
+  background: #f5f5f5;
+}
+
+.table tbody tr:hover {
+  background: #f0f0f0;
+}
+
+/* Column widths */
+.table tbody td:nth-child(1) {
+  width: 20%;
+  font-weight: 500;
+}
+.table tbody td:nth-child(2) {
+  width: 35%;
+  font-size: 13px;
+}
+.table tbody td:nth-child(3) {
+  width: 25%;
+}
+.table tbody td:nth-child(4) {
+  width: 20%;
+  text-align: right;
+}
+
+/* Active checkbox - purple when checked */
+.form-check-input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 2px solid #ccc;
+  margin: 0;
+  vertical-align: middle;
+  accent-color: #8b5fbf;
+}
+
+.form-check-input:checked {
+  background-color: #8b5fbf;
+  border-color: #8b5fbf;
+  box-shadow: none;
+}
+
+.form-check-input:focus {
+  outline: none;
+}
+
+/* Label for checkbox */
+label {
+  display: inline;
+  margin: 0 0 0 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Links styling */
+a.text-primary {
+  color: #0066cc !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+a.text-primary:hover {
+  text-decoration: underline;
+}
+
+/* Rateplan list */
+.table td ol {
+  margin: 0 0 8px 0;
+  padding: 0 0 0 18px;
+  font-size: 13px;
+}
+
+.table td ol li {
+  color: #333;
+  margin: 2px 0;
+}
+
+/* Action links and buttons */
+.table a.text-primary.fw-semibold {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0066cc;
+}
+
+.table .btn-outline-success {
+  border-color: #20a492;
+  color: #20a492;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.table .btn-outline-success:hover {
+  background-color: #20a492;
+  color: #fff;
+}
+
+/* Edit form when showing */
+.card.card-body {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 16px;
+}
+
+/* --- RESPONSIVE STYLES --- */
+@media (max-width: 900px) {
+  .hotel-header,
+  .rooms-container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .rooms-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 10px 12px;
+  }
+}

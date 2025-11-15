@@ -1,0 +1,137 @@
+<!-- 🔹 Hotel header (Top bar) -->
+<div class="hotel-header d-flex justify-content-between align-items-start mb-3">
+  <!-- Left section -->
+  <div class="hotel-info">
+    <h5 class="fw-bold mb-1">Hotel Name: {{ hotel?.name }}</h5>
+    <small class="text-muted">Address: {{ hotel?.address }}</small>
+  </div>
+
+  <!-- Right section (Dropdown) -->
+  <div class="hotel-select">
+    <select
+      class="form-select shadow-sm"
+      style="width: 260px"
+      [(ngModel)]="selectedHotelId"
+      (ngModelChange)="onHotelChange($event)"
+    >
+      <option *ngFor="let h of hotels" [value]="h.id">
+        {{ h.name }} - {{ h.id }}
+      </option>
+    </select>
+  </div>
+</div>
+
+
+<!-- 🔹 Rooms container -->
+<div class="rooms-container card shadow-lg bg-white rounded-3" *ngIf="hotel">
+  <!-- Header bar -->
+  <div class="rooms-header d-flex justify-content-between align-items-center px-4 py-3">
+    <h5 class="fw-bold mb-0 text-white">
+      Existing Rooms ({{ hotel.rooms.length }})
+    </h5>
+    <!-- Create new room button — intended to redirect to a create-room component.
+         The target component isn't implemented yet, so this is a non-functional placeholder. -->
+    <button class="btn create-room-btn" (click)="goToCreateRoom()" aria-label="Create New Room">
+      <span class="plus">+</span>
+      CREATE NEW ROOM
+    </button>
+  </div>
+
+  <!-- Create new room form -->
+  <div *ngIf="showNewRoom" class="card card-body m-4 mb-0 border border-success-subtle">
+    <h6 class="fw-semibold mb-3">Create New Room</h6>
+    <input class="form-control mb-2" placeholder="Room Name" [(ngModel)]="newName" />
+    <textarea
+      class="form-control mb-3"
+      placeholder="Description"
+      [(ngModel)]="newDesc"
+      rows="2"
+    ></textarea>
+    <div class="d-flex justify-content-end gap-2">
+      <button class="btn btn-success btn-sm" (click)="createRoom()">Save Room</button>
+      <button class="btn btn-outline-secondary btn-sm" (click)="showNewRoom = false">
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <!-- Rooms Table -->
+  <div class="p-4">
+    <table class="table table-bordered table-hover align-middle rounded overflow-hidden">
+      <thead>
+        <tr>
+          <th>Room Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+          <th>Rateplans</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of hotel.rooms">
+          <td>
+            <ng-container *ngIf="editingId !== r.id; else editNameTpl">
+              {{ r.name }}
+            </ng-container>
+            <ng-template #editNameTpl>
+              <input
+                class="form-control"
+                [(ngModel)]="editName"
+                placeholder="Room name"
+                title="Room Name"
+                aria-label="Room Name"
+              />
+            </ng-template>
+          </td>
+
+          <td>
+            <ng-container *ngIf="editingId !== r.id; else editDescTpl">
+              {{ r.description }}
+            </ng-container>
+            <ng-template #editDescTpl>
+              <input class="form-control" [(ngModel)]="editDesc" placeholder="Description" title="Room Description" aria-label="Room Description" />
+            </ng-template>
+          </td>
+
+          <td>
+            <div class="mb-2">
+              <input
+                class="form-check-input me-2"
+                type="checkbox"
+                [checked]="r.active"
+                (change)="toggle(r)"
+              />
+              <label>Active</label>
+            </div>
+
+            <div *ngIf="editingId !== r.id; else editBtns">
+              <a href="#" class="text-primary fw-semibold" (click)="startEdit(r)">EDIT ROOM</a>
+              <div class="d-flex align-items-center mt-2">
+                <input
+                  class="form-control form-control-sm me-2"
+                  style="width: 70px"
+                  [(ngModel)]="newRate"
+                  placeholder="EP"
+                  title="Exchange Plan Rate"
+                  aria-label="Exchange Plan Rate"
+                />
+                <button class="btn btn-outline-success btn-sm" (click)="addRate(r)">+ ADD</button>
+              </div>
+            </div>
+
+            <ng-template #editBtns>
+              <button class="btn btn-sm btn-success me-2" (click)="save(r)">Save</button>
+              <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">Cancel</button>
+            </ng-template>
+          </td>
+
+          <td>
+            <ol class="mb-1">
+              <li *ngFor="let rp of r.rateplans">{{ rp.code }}</li>
+            </ol>
+            <a href="#" class="text-primary fw-semibold">VIEW RATEPLANS</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

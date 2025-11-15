@@ -1,0 +1,37 @@
+<div class="container">
+
+  <div class="header">
+    <h2>Property Details</h2>
+    <button class="add-btn" (click)="addHotel()">+ Add Hotel</button>
+  </div>
+
+  <input type="text" class="search" placeholder="Search by name or ID" [(ngModel)]="search">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Property ID</th>
+        <th>Name</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (h of hotels; track $index) {
+        @if(h.name.toLowerCase().includes(search.toLowerCase()) || h.id.toString().includes(search)) {
+        <tr>
+          <td class="id-col">{{h.id}}</td>
+          <td>
+            <div class="hotel-name">{{h.name}}</div>
+            <div class="hotel-address">{{h.address}}</div>
+          </td>
+          <td class="live">LIVE</td>
+        </tr>
+        }
+      }
+    </tbody>
+
+  </table>
+
+</div>
+
