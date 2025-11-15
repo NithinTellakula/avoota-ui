@@ -1,0 +1,5 @@
+.page-container {
+  background-color: #f6f5f5; /* dark mode background */
+  min-height: 100vh;
+  padding: 30px;
+}
