@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
 import { Observable, of } from 'rxjs';
 
 // --- Models ---
@@ -23,17 +22,12 @@ export interface Hotel {
   rooms: Room[];
 }
 
-// --- Service ---
-=======
-
->>>>>>> origin/Ashish
 @Injectable({
   providedIn: 'root'
 })
 export class HotelService {
-<<<<<<< HEAD
 
-  // ✅ Multiple hotels, each with rooms
+  // ✅ Full hotel structure from HEAD
   private hotels: Hotel[] = [
     {
       id: 41365364,
@@ -78,24 +72,26 @@ export class HotelService {
     }
   ];
 
-  // --- ✅ Methods for header component ---
-  /** Return all hotels */
+  // ============================
+  //   COMMON SERVICE METHODS
+  // ============================
+
+  /** Return list of all hotels (for header) */
   getHotels(): Observable<Hotel[]> {
     return of(this.hotels);
   }
 
-  /** Return single hotel by ID */
+  /** Return hotel by ID */
   getHotelById(id: number): Observable<Hotel | undefined> {
     return of(this.hotels.find(h => h.id === id));
   }
 
-  // --- ✅ Methods for rooms component ---
-  /** Returns the first hotel for demo */
+  /** Returns the first hotel (default) */
   getHotel(): Observable<Hotel> {
-    // Just return the first one (Hotel Vista)
     return of(structuredClone(this.hotels[0]));
   }
 
+  /** Toggle active/inactive state of a room */
   toggleActive(hotelId: number, roomId: number): Observable<void> {
     const hotel = this.hotels.find(h => h.id === hotelId);
     const room = hotel?.rooms.find(r => r.id === roomId);
@@ -103,23 +99,34 @@ export class HotelService {
     return of();
   }
 
-  editRoom(hotelId: number, roomId: number, data: Partial<{ name: string; description: string }>): Observable<void> {
+  /** Edit a room name/description */
+  editRoom(
+    hotelId: number,
+    roomId: number,
+    data: Partial<{ name: string; description: string }>
+  ): Observable<void> {
     const hotel = this.hotels.find(h => h.id === hotelId);
     const room = hotel?.rooms.find(r => r.id === roomId);
+
     if (room) Object.assign(room, data);
+
     return of();
   }
 
+  /** Add new rate plan to a room */
   addRateplan(hotelId: number, roomId: number, code: string): Observable<void> {
     const hotel = this.hotels.find(h => h.id === hotelId);
     const room = hotel?.rooms.find(r => r.id === roomId);
+
     if (room) {
       const nextId = Math.max(...room.rateplans.map(rp => rp.id), 0) + 1;
       room.rateplans.push({ id: nextId, code });
     }
+
     return of();
   }
 
+  /** Create new room in a hotel */
   createRoom(hotelId: number, name: string, description: string): Observable<void> {
     const hotel = this.hotels.find(h => h.id === hotelId);
     if (hotel) {
@@ -133,19 +140,9 @@ export class HotelService {
       });
     }
     return of();
-=======
-  hotels:any[] = [];
+  }
 
-  addHotel(hotel:any) {
+  addHotel(hotel: Hotel) {
     this.hotels.push(hotel);
-  }
-
-  getHotels() {
-    return this.hotels;
-  }
-
-  getHotelById(id:any){
-    return this.hotels.find(h => h.id == id);
->>>>>>> origin/Ashish
   }
 }
